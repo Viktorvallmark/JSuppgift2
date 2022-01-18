@@ -1,31 +1,21 @@
 let computerScore = 0;
 let playerScore = 0;
 
-let playername = document.querySelector("playername");
-let playerNameUpdate = document.getElementById("player").addEventListener("click", myFunction);
 
-console.log(playername)
-function myFunction(){
-    document.getElementById("playername").innerHTML = playername;
+//Update player name
+
+function updateName(){
+    const button = document.querySelector("button");
+    const input = document.querySelector("input");
+    const h2 = document.querySelector("h2");
+    button.addEventListener("click", function(event){
+        console.log(event);
+        h2.innerText = input.value;
+        
+    })
+    
 }
-//Add element
-
-// function addElement(name){
-//     const element = document.createElement(`${name}`);
-//     document.body.append(element);
-// }
-
-
-//Add player name to DOM
-
-// function addPlayerNameToDOM(pName){
-//     const nameToDOM = addElement(h2);
-//     // const div = document.querySelector("div");
-//     nameToDOM.innerText(`${pName}`);
-// }
-// addPlayerNameToDOM(playername);
-
-
+updateName();
 
 //Computations for computer
 
@@ -42,6 +32,45 @@ function calcCompPick(){
     return compScore;
 }
 
-const rock = document.getElementById("rock").addEventListener("click", myFunction);
-const scissor = document.getElementById("scissor").addEventListener("click", myFunction);
-const paper = document.getElementById("paper").addEventListener("click", myFunction);
+//Player choice 
+
+function playerChoice(){
+    const picRock = document.querySelector("rock");
+    const picScissor = document.querySelector("scissor");
+    const picPaper = document.querySelector("paper");
+    
+    let pScore = 0;
+    picRock.addEventListener("click", function(event){
+        console.log(event);
+        pScore = 1;
+    })
+    picScissor.addEventListener("click", function(event){
+        console.log(event);
+        pScore = 2;
+    })
+    picPaper.addEventListener("click", function(event){
+        console.log(event);
+        pScore = 3;
+    })
+    return pScore;
+}
+playerChoice();
+
+//Compare computer and player
+
+function compareScore(){
+    while(playerScore<3 && computerScore<3){ 
+    if(playerChoice() > calcCompPick()){
+        playerScore++;
+    }else{
+        computerScore++;
+    }
+    }
+    if(playerScore = 3){
+        alert("Player won!");
+    }else if(computerScore = 3){
+        alert("Computer won!")
+    }
+
+}
+compareScore();
